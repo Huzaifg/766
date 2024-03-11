@@ -49,5 +49,6 @@ def genSIFTMatches(img_s, img_d):
     # Extract the locations of matched keypoints
     xs = Fs[matches[:, 0]]
     xd = Fd[matches[:, 1]]
-
+    # Flip x and y
+    xs, xd = xs[:, [1, 0]], xd[:, [1, 0]]
     return xs, xd

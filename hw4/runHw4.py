@@ -150,7 +150,7 @@ def challenge1c():
 
     # Assuming showCorrespondence is a function defined elsewhere in your code
     before_img = showCorrespondence(img_src, img_dst, xs, xd)
-    before_img = Image.fromarray((before_img * 255).astype(np.uint8))
+    # before_img = Image.fromarray((before_img * 255).astype(np.uint8))
     before_img.save('outputs/before_ransac.png')
 
     plt.figure()
@@ -160,12 +160,12 @@ def challenge1c():
 
     # Use RANSAC to reject outliers
     ransac_n = 20  # Max number of iterations
-    ransac_eps = 2  # Acceptable alignment error 
+    ransac_eps = 0.5  # Acceptable alignment error 
 
     # Assuming runRANSAC is a function defined elsewhere in your code
     inliers_id, _ = runRANSAC(xs, xd, ransac_n, ransac_eps)
     after_img = showCorrespondence(img_src, img_dst, xs[inliers_id, :], xd[inliers_id, :])
-    after_img = Image.fromarray((after_img * 255).astype(np.uint8))
+    # after_img = Image.fromarray((after_img * 255).astype(np.uint8))
     after_img.save('outputs/after_ransac.png')
 
     plt.figure()
@@ -183,12 +183,13 @@ def challenge1d():
     horse = np.array(Image.open('data/escher_horsemen.png').convert('RGBA'))
     horse, horse_mask = horse[:, :, :3], horse[:, :, 3]
 
+
     blended_result = blendImagePair(fish, fish_mask, horse, horse_mask, 'blend')
-    blended_result = Image.fromarray((blended_result * 255).astype(np.uint8))
+    blended_result = Image.fromarray((blended_result).astype(np.uint8))
     blended_result.save('outputs/blended_result.png')
 
     overlay_result = blendImagePair(fish, fish_mask, horse, horse_mask, 'overlay')
-    overlay_result = Image.fromarray((overlay_result * 255).astype(np.uint8))
+    overlay_result = Image.fromarray((overlay_result).astype(np.uint8))
     overlay_result.save('outputs/overlay_result.png')
 
     fig, axs = plt.subplots(2, 2, figsize=(10, 10))
@@ -207,7 +208,7 @@ def challenge1e():
     img_right = np.array(Image.open('data/mountain_right.png')) / 255.0
 
     # You are free to change the order of input arguments
-    stitched_img = stitchImg(img_center, img_left, img_right)
+    stitched_img = stitchImg(img_left, img_center)
 
     # Save the stitched image
     stitched_img = Image.fromarray((stitched_img * 255).astype(np.uint8))
