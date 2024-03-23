@@ -166,6 +166,7 @@ Having most of the pieces in place, the future tasks are as follows
     \item Use the same stack on the real vehicle with ZED 2. This involves mounting ZED 2 onto the vehicle (mount being 3D printed) and then setting up the autonomy stack and its dependencies on the compute - an Nvidia Jetson AGX.
     \item Obtaining data, coming up with a mathematical metric and evaluating the sim2real gap. Although we do not expect to complete many tests, this setup will be used in the lab internally to complete a robust evaluation of the sim2real gap.
 \end{enumerate}
+Additionally, we would like to make a better environment mesh as we suspect that the difference in lighting and material textures creating a large sim2real gap. For this we plan to use Nerf/Gaussian-splatting based techniques. However, one major caveat is that the camera sensor simulation requires the environment to be a mesh in order to sense it (it works based on ray tracing which requires the rays to bounce of the objects). For this, we plan to explore \href{https://github.com/Anttwo/SuGaR}{SuGaR} and \href{https://github.com/qway/nerfmeshes}{nerfmeshes} like methods.  
 
 \section{Member contributions}
 All members contributed equally to the various components of the project.
